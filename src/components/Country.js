@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import './countries.css';
 
-const countriesToFetch = [
-    'https://restcountries.eu/rest/v2/name/germany',
-    'https://restcountries.eu/rest/v2/name/france',
-    'https://restcountries.eu/rest/v2/name/romania',
-    'https://restcountries.eu/rest/v2/name/italy',
-    'https://restcountries.eu/rest/v2/name/spain',
-];
-
 const betterCountriesToFetch = [
     'germany',
     'france',
@@ -38,11 +30,9 @@ class Country extends Component {
     }
 
     handleCountryFetch() {
-        console.log('randomCountry', this.getRandomCountry())
         fetch(`https://restcountries.eu/rest/v2/name/${this.getRandomCountry()}`)
         .then( response => response.json())
         .then(data => {
-            console.log('fetch console', data)
             this.handleResult(data[0]);
         });
     };
@@ -56,7 +46,7 @@ class Country extends Component {
                     this.state.countryList.map( (country, index) => {
                         return ( 
                             <div className='countries-container'>
-                                <img className='svg-flag' src={ country.flag } max-width='25%' max-height='20%' />
+                                <img className='svg-flag' src={ country.flag } alt='flag' />
                                 <div key={index}> 
                                     Country: { country.name } 
                                 </div>
